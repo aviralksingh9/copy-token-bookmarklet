@@ -1,14 +1,22 @@
-![Copy Token Demo](assets/copyTokenDemo.gif)
+![Signal Demo](assets/signalDemo.gif)
 
-# Copy Token
+# 🧠 Signal — Web Intelligence Layer
 
-A lightweight bookmarklet that extracts a JWT token from the current web app and copies it to your clipboard — without opening DevTools.
+A lightweight bookmarklet that overlays any webpage with structural intelligence — instantly.
+
+No extensions.  
+No backend.  
+No tracking.  
+No dependencies.  
+
+Just awareness.
 
 **Live Demo:**  
-https://aviralksingh9.github.io/copy-token-bookmarklet/
+https://aviralksingh9.github.io/signal-bookmarklet/
 
 ![Type](https://img.shields.io/badge/Type-Bookmarklet-7C3AED?style=flat-square)
 ![Zero Dependencies](https://img.shields.io/badge/Zero-Dependencies-0EA5E9?style=flat-square)
+![Client Side](https://img.shields.io/badge/100%25-Client%20Side-10B981?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)
 ![Version](https://img.shields.io/badge/Version-1.0.0-black?style=flat-square)
 
@@ -16,72 +24,88 @@ https://aviralksingh9.github.io/copy-token-bookmarklet/
 
 ## What It Does
 
-Copy Token scans:
+Signal analyzes the visible structure of any webpage in real time and presents structural intelligence in a calm side panel.
 
-- `localStorage`
-- `sessionStorage`
+It evaluates:
 
-If it finds a valid JWT (`header.payload.signature` format), it copies it directly to your clipboard.
+- Page intent (Informational, Transactional, Marketing)
+- Content depth
+- Commercial pressure
+- Structural segmentation
+- Cognitive load
+- Authority bias
+- Emotional intensity
+- Live reading behavior
 
-No network inspection.  
-No manual header copying.  
-No extra steps.
+It does not modify the page.  
+It does not remove content.  
+It does not inject heavy styles.  
+
+It analyzes and informs.
 
 ---
 
 ## Why It’s Useful
 
-If you regularly:
+Modern webpages are engineered for engagement, persuasion, and conversion.
 
-- Open DevTools  
-- Check the Network tab  
-- Find Authorization headers  
-- Copy Bearer tokens  
-- Paste into Swagger or Postman  
+Signal restores awareness.
 
-This removes that repetition.
+It helps you understand:
 
-One click → token copied.
+- What a page is trying to make you do
+- How dense or shallow the content is
+- Whether persuasive pressure is present
+- How cognitively heavy the page feels
+- Whether you are deeply reading or just scanning
+
+All without leaving the page.
 
 ---
 
 ## Features
 
-- Detects JWT tokens in storage
-- Silent clipboard copy
+- Intent classification engine
+- Weighted structural scoring
+- Content depth estimation
+- Commercial pressure detection
+- Cognitive overload mapping
+- Authority bias index
+- Emotional intensity scoring
+- Live scroll-based reading mode detection
 - Zero dependencies (Vanilla JS)
-- Optional immersive UI modes
-- Works entirely in-browser
+- Fully client-side execution
+- Complete cleanup on exit
 
 ---
 
 ## Installation
 
 1. Open `index.html` in your browser.
-2. Show bookmarks bar using:
+2. Show bookmarks bar using: Ctrl + Shift + B
 
-   ```
-   Ctrl + Shift + B
-   ```
-
-3. Drag the **Copy Token** button to your bookmarks bar.
+3. Drag the **Signal** button to your bookmarks bar.
 
 Installation complete.
+
+No extension required.
 
 ---
 
 ## Usage
 
-1. Log into your target environment.
-2. Click the **Copy Token** bookmark.
-3. The JWT token is copied silently to your clipboard.
-4. Paste it wherever needed.
+1. Open any website (article, blog, social media, landing page).
+2. Click the **Signal** bookmark.
+3. The intelligence panel appears on the right.
+4. Press `ESC` to close.
+
+All listeners and layout adjustments are removed on exit.
 
 ---
 
 ## Immersive Modes
 
-These are optional and separate from the core utility.
+These are optional and separate from the structural intelligence engine.
 
 ### Zen Mode
 
@@ -104,11 +128,13 @@ Sound controls appear only inside immersive modes.
 
 - No data is sent anywhere
 - No tracking
-- No storage of tokens
+- No external requests
+- No storage of browsing data
+- No persistent background execution
 - Runs entirely in your browser
-- Uses Clipboard API locally
+- Executes only when clicked
 
-Use only in environments you trust.
+Signal does not collect or transmit any information.
 
 ---
 
@@ -116,12 +142,18 @@ Use only in environments you trust.
 
 The bookmarklet:
 
-1. Iterates over `localStorage` and `sessionStorage`
-2. Checks for strings matching JWT structure
-3. Copies the first valid match using the Clipboard API
+1. Extracts visible page text
+2. Analyzes structural distribution (paragraphs, headings, links, buttons)
+3. Computes weighted heuristic scores
+4. Classifies page intent
+5. Estimates persuasion and friction metrics
+6. Tracks scroll behavior to determine reading mode
+7. Renders a fixed intelligence panel
+8. Removes all listeners and restores layout on exit
 
 No backend.  
-No external requests.
+No APIs.  
+No external scripts.
 
 ---
 
@@ -132,10 +164,11 @@ No external requests.
 ├── index.html
 ├── styles.css
 ├── script.js
-└── assets/
-    ├── copyTokenDemo.gif
-    ├── day.mp3
-    └── zen.mp3
+├── README.md
+└── assets
+    ├── signalDemo.gif
+    ├── zen.mp3
+    └── focus.mp3
 ```
 
 ---
@@ -159,7 +192,8 @@ Note: Audio autoplay depends on browser interaction policies.
 - Bookmarklet architecture
 
 No frameworks.  
-No build step.
+No build step.  
+No dependencies.
 
 ---
 
@@ -167,11 +201,11 @@ No build step.
 
 Zen Mode and Focus Mode include music by **Scott Buckley**, used under the Creative Commons Attribution 4.0 License (CC BY 4.0).
 
-- **Zen Mode:**  
+- Zen Mode:  
   *Meanwhile* — Scott Buckley  
   https://www.scottbuckley.com.au/library/meanwhile/
 
-- **Focus Mode:**  
+- Focus Mode:  
   *Reawakening* — Scott Buckley  
   https://www.scottbuckley.com.au/library/reawakening/
 
@@ -204,4 +238,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
