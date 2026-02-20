@@ -129,47 +129,58 @@ function drawSky(cycle, day, cam) {
 }
 
 function drawSunMoon(cycle, day, cam) {
-  const night = 1 - day;
   const x = cycle * w + cam.x * 0.3;
   const y = h * 0.81 - Math.sin(cycle * Math.PI) * h * 0.6 + cam.y * 0.24;
-  const moonBlend = clamp((0.38 - day) / 0.38, 0, 1);
+  const sunPhase = day >= 0.45;
 
-  const warmEdge = smoothstep(0.12, 0.25, cycle) + (1 - smoothstep(0.64, 0.8, cycle));
-  const noonBlend = smoothstep(0.34, 0.52, cycle) * (1 - smoothstep(0.52, 0.68, cycle));
+  if (sunPhase) {
+    const warmEdge = smoothstep(0.12, 0.25, cycle) + (1 - smoothstep(0.64, 0.8, cycle));
+    const noonBlend = smoothstep(0.34, 0.52, cycle) * (1 - smoothstep(0.52, 0.68, cycle));
+    const sunR = 255;
+    const sunG = Math.round(194 + 48 * noonBlend + 18 * warmEdge);
+    const sunB = Math.round(112 + 94 * noonBlend);
+    const sunRadius = 52;
+    const sunGlow = 210;
+    const sunAlpha = clamp(0.45 + day * 0.6, 0.55, 1);
 
-  const sunR = 255;
-  const sunG = Math.round(194 + 48 * noonBlend + 18 * warmEdge);
-  const sunB = Math.round(112 + 94 * noonBlend);
-  const moonR = 238;
-  const moonG = 242;
-  const moonB = 255;
-
-  const orbR = Math.round(lerp(sunR, moonR, moonBlend));
-  const orbG = Math.round(lerp(sunG, moonG, moonBlend));
-  const orbB = Math.round(lerp(sunB, moonB, moonBlend));
-  const radius = lerp(52, 37, moonBlend);
-  const glowSize = lerp(210, 130, moonBlend);
-  const glowAlpha = lerp(0.95 * day + 0.14, 0.75 * night + 0.1, moonBlend);
-
-  if (day > 0.02 || night > 0.07) {
-    const glow = ctx.createRadialGradient(x, y, 8, x, y, glowSize);
-    glow.addColorStop(0, `rgba(${orbR},${orbG},${orbB},${glowAlpha})`);
-    glow.addColorStop(1, `rgba(${orbR},${orbG},${orbB},0)`);
+    const glow = ctx.createRadialGradient(x, y, 8, x, y, sunGlow);
+    glow.addColorStop(0, `rgba(${sunR},${sunG},${sunB},${0.95 * sunAlpha})`);
+    glow.addColorStop(1, `rgba(${sunR},${sunG},${sunB},0)`);
     ctx.fillStyle = glow;
-    ctx.fillRect(x - glowSize, y - glowSize, glowSize * 2, glowSize * 2);
+    ctx.fillRect(x - sunGlow, y - sunGlow, sunGlow * 2, sunGlow * 2);
 
     ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${orbR},${Math.min(255, orbG + 6)},${Math.min(255, orbB + 14)},${0.94 - moonBlend * 0.08})`;
+    ctx.arc(x, y, sunRadius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${sunR},${Math.min(255, sunG + 10)},${Math.min(235, sunB + 30)},${sunAlpha})`;
     ctx.fill();
-
-    if (moonBlend > 0.16) {
-      ctx.beginPath();
-      ctx.arc(x + radius * 0.35, y - radius * 0.14, radius * 0.82, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(8,18,36,0.9)";
-      ctx.fill();
-    }
+    return;
   }
+
+  const moonRadius = 36;
+  const moonGlow = 110;
+  const moonAlpha = clamp(0.35 + (1 - day) * 0.7, 0.5, 0.98);
+  const moonR = 242;
+  const moonG = 245;
+  const moonB = 251;
+
+  const glow = ctx.createRadialGradient(x, y, 8, x, y, moonGlow);
+  glow.addColorStop(0, `rgba(${moonR},${moonG},${moonB},${0.5 * moonAlpha})`);
+  glow.addColorStop(1, `rgba(${moonR},${moonG},${moonB},0)`);
+  ctx.fillStyle = glow;
+  ctx.fillRect(x - moonGlow, y - moonGlow, moonGlow * 2, moonGlow * 2);
+
+  ctx.beginPath();
+  ctx.arc(x, y, moonRadius, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(${moonR},${moonG},${moonB},${moonAlpha})`;
+  ctx.fill();
+
+  ctx.fillStyle = `rgba(210,216,230,${0.12 * moonAlpha})`;
+  ctx.beginPath();
+  ctx.arc(x - moonRadius * 0.26, y - moonRadius * 0.1, moonRadius * 0.14, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x + moonRadius * 0.2, y + moonRadius * 0.16, moonRadius * 0.1, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 function drawClouds(day, cam) {
